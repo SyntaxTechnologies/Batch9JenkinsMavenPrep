@@ -4,6 +4,7 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -23,8 +24,11 @@ public class CommonMethods {
         switch (ConfigReader.getPropertyValue("browser")){
             case "chrome":
                 //System.setProperty("webdriver.chrome.driver", "src/drivers/chromedriver.exe");
+                ChromeOptions chromeOptions=new ChromeOptions();
+                chromeOptions.setHeadless(true);
+
                 WebDriverManager.chromedriver().setup();
-                driver = new ChromeDriver();
+                driver = new ChromeDriver(chromeOptions);
                 break;
             case "firefox":
               //  System.setProperty("webdriver.gecko.driver", "src/drivers/geckodriver.exe");
